@@ -86,9 +86,9 @@ function renderPublicPage(data) {
       <div class="hero-name">${e(p.name)}</div>
       <div class="hero-meta">
         <span><strong>${e(p.currentClub)}</strong></span>
-        <span>${e(p.nationality)}</span>
-        <span>${e(p.height)}</span>
-        <span>Pie: ${e(p.foot)}</span>
+        ${p.nationality ? `<span>${e(p.nationality)}</span>` : ''}
+        ${p.height ? `<span>${e(p.height)}</span>` : ''}
+        ${p.foot ? `<span>Pie: ${e(p.foot)}</span>` : ''}
       </div>
       <div class="hero-links">
         <a class="btn btn-gold" href="#noticias">Últimas noticias</a>
@@ -115,12 +115,15 @@ function renderPublicPage(data) {
     <div class="section-sub">Temporada ${e(data.seasonStats.season)} · Datos de contrato y valor de mercado</div>
     <div class="data-table">
       <div class="data-row"><div class="k">Fecha de nacimiento</div><div class="v">${e(p.birthdate)}</div></div>
+      ${p.birthplace ? `<div class="data-row"><div class="k">Lugar de nacimiento</div><div class="v">${e(p.birthplace)}</div></div>` : ''}
       <div class="data-row"><div class="k">Nacionalidad</div><div class="v">${e(p.nationality)}</div></div>
-      <div class="data-row"><div class="k">Altura</div><div class="v">${e(p.height)}</div></div>
-      <div class="data-row"><div class="k">Pie hábil</div><div class="v">${e(p.foot)}</div></div>
+      ${p.height ? `<div class="data-row"><div class="k">Altura</div><div class="v">${e(p.height)}</div></div>` : ''}
+      ${p.foot ? `<div class="data-row"><div class="k">Pie hábil</div><div class="v">${e(p.foot)}</div></div>` : ''}
       <div class="data-row"><div class="k">Club actual</div><div class="v">${e(p.currentClub)}</div></div>
-      <div class="data-row"><div class="k">Valor de mercado</div><div class="v">${e(p.marketValue)}</div></div>
-      <div class="data-row"><div class="k">Contrato hasta</div><div class="v">${e(p.contractUntil)}</div></div>
+      ${p.signedDate ? `<div class="data-row"><div class="k">Fichado</div><div class="v">${e(p.signedDate)}</div></div>` : ''}
+      ${p.marketValue ? `<div class="data-row"><div class="k">Valor de mercado</div><div class="v">${e(p.marketValue)}</div></div>` : ''}
+      ${p.contractUntil ? `<div class="data-row"><div class="k">Contrato hasta</div><div class="v">${e(p.contractUntil)}</div></div>` : ''}
+      ${p.agent ? `<div class="data-row"><div class="k">Representación</div><div class="v">${e(p.agent)}</div></div>` : ''}
       <div class="data-row"><div class="k">Estadísticas de carrera</div><div class="v">${e(data.careerStats.matches)} PJ · ${e(data.careerStats.goals)} goles · ${e(data.careerStats.assists)} asist. · ${e(data.careerStats.seasons)} temporadas · ${e(data.careerStats.clubs)} clubes</div></div>
     </div>
     ${p.transfermarktUrl ? `<a class="tm-link" href="${e(p.transfermarktUrl)}" target="_blank" rel="noopener">Perfil completo en Transfermarkt ↗</a>` : ''}
@@ -169,18 +172,19 @@ function renderPublicPage(data) {
 
 <div class="contact-band">
   <div class="container">
-    <h2>Contacto</h2>
-    <p>Para consultas profesionales, pruebas o representación.</p>
-    <div class="contact-row">
-      ${p.email ? `<span class="pill">${e(p.email)}</span>` : ''}
-      ${p.phone ? `<span class="pill">${e(p.phone)}</span>` : ''}
-      ${p.instagram ? `<a class="pill" href="${e(p.instagram)}" target="_blank">Instagram</a>` : ''}
-      ${p.youtube ? `<a class="pill" href="${e(p.youtube)}" target="_blank">YouTube</a>` : ''}
+    ${p.agent ? `<div class="agent-line">Representado por ${e(p.agent)}</div>` : ''}
+    <div class="icon-row">
+      ${p.email ? `<a class="icon-link" href="mailto:${e(p.email)}" aria-label="Email" title="${e(p.email)}">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+      </a>` : ''}
+      ${p.instagram ? `<a class="icon-link" href="${e(p.instagram)}" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      </a>` : ''}
     </div>
   </div>
 </div>
 
-<footer>© ${new Date().getFullYear()} ${e(p.name)} — Sitio de presentación profesional</footer>
+<footer>© ${new Date().getFullYear()} ${e(p.name)}</footer>
 
 </body>
 </html>`;

@@ -1,60 +1,49 @@
 {
   "player": {
-    "name": "Nombre Apellido",
-    "position": "Delantero centro",
-    "squadNumber": 9,
-    "birthdate": "2003-05-14",
-    "nationality": "España",
-    "height": "1.82 m",
-    "foot": "Derecho",
-    "currentClub": "Club Actual FC",
-    "marketValue": "€500 mil",
-    "contractUntil": "2027-06-30",
-    "transfermarktUrl": "https://www.transfermarkt.es/",
-    "bio": "Delantero formado en la cantera, con buen desmarque y definición dentro del área. Disponible para pruebas y fichajes. Editá esta biografía desde el panel de administración.",
+    "name": "Mohamed Sylla",
+    "position": "Centrocampista — Mediocentro ofensivo",
+    "squadNumber": "",
+    "birthdate": "2004-04-15",
+    "birthplace": "Conakry, Guinea",
+    "nationality": "Guinea",
+    "height": "",
+    "foot": "",
+    "currentClub": "Granada CF C",
+    "marketValue": "",
+    "contractUntil": "",
+    "signedDate": "2025-07-01",
+    "transfermarktUrl": "https://www.transfermarkt.es/mohamed-sylla/profil/spieler/1256104",
+    "agent": "Fella Sports",
+    "bio": "Centrocampista ofensivo nacido en Conakry, Guinea. Actualmente en Granada CF C. Editá esta biografía desde el panel de administración.",
     "heroPhoto": null,
     "email": "contacto@ejemplo.com",
-    "phone": "+54 9 11 0000-0000",
+    "phone": "",
     "instagram": "",
     "youtube": ""
   },
   "seasonStats": {
     "season": "2025/2026",
-    "matches": 30,
-    "goals": 18,
-    "assists": 7,
-    "minutes": 2400,
-    "yellowCards": 3,
+    "matches": 0,
+    "goals": 0,
+    "assists": 0,
+    "minutes": 0,
+    "yellowCards": 0,
     "redCards": 0
   },
   "careerStats": {
-    "matches": 120,
-    "goals": 64,
-    "assists": 29,
-    "seasons": 4,
-    "clubs": 3
+    "matches": 0,
+    "goals": 0,
+    "assists": 0,
+    "seasons": 0,
+    "clubs": 0
   },
   "clubHistory": [
     {
       "id": "c1",
-      "club": "Club Actual FC",
+      "club": "Granada CF C",
       "crest": null,
-      "period": "2024 — Presente",
-      "role": "Titular"
-    },
-    {
-      "id": "c2",
-      "club": "Club Anterior CD",
-      "crest": null,
-      "period": "2022 — 2024",
-      "role": "Titular"
-    },
-    {
-      "id": "c3",
-      "club": "Academia Juvenil",
-      "crest": null,
-      "period": "2019 — 2022",
-      "role": "Formativas"
+      "period": "2025 — Presente",
+      "role": "Plantilla"
     }
   ],
   "gallery": [],

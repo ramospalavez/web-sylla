@@ -137,12 +137,15 @@ section{padding:64px 0;}
 .news-date{color:#9aa4b3;font-size:12px;}
 .news-link{font-size:12px;font-weight:700;color:var(--navy);}
 
-/* CONTACT */
-.contact-band{background:var(--navy);color:#fff;padding:60px 0;text-align:center;}
-.contact-band h2{font-size:24px;font-weight:800;text-transform:uppercase;margin-bottom:10px;}
-.contact-band p{color:#aeb8c9;margin-bottom:24px;}
-.contact-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
-.pill{border:1px solid rgba(255,255,255,0.25);padding:9px 18px;border-radius:30px;font-size:13px;}
+/* CONTACT — minimal, discreet */
+.contact-band{background:var(--navy);color:#fff;padding:34px 0;text-align:center;}
+.agent-line{color:#aeb8c9;font-size:12px;letter-spacing:0.3px;margin-bottom:14px;}
+.icon-row{display:flex;gap:18px;justify-content:center;align-items:center;}
+.icon-link{
+  display:flex;align-items:center;justify-content:center;width:38px;height:38px;
+  border-radius:50%;border:1px solid rgba(255,255,255,0.25);color:#cfd6e2;
+}
+.icon-link:hover{border-color:var(--gold);color:var(--gold);}
 
 footer{padding:26px 0;color:var(--muted);font-size:12px;text-align:center;border-top:1px solid var(--line);}
 

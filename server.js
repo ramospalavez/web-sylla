@@ -171,9 +171,9 @@ async function handleRequest(req, res) {
         const data = readData();
         Object.assign(data.player, {
           name: f.name, position: f.position, squadNumber: f.squadNumber,
-          birthdate: f.birthdate, nationality: f.nationality, height: f.height,
-          foot: f.foot, currentClub: f.currentClub, marketValue: f.marketValue,
-          contractUntil: f.contractUntil, transfermarktUrl: f.transfermarktUrl,
+          birthdate: f.birthdate, birthplace: f.birthplace, nationality: f.nationality, height: f.height,
+          foot: f.foot, currentClub: f.currentClub, signedDate: f.signedDate, marketValue: f.marketValue,
+          contractUntil: f.contractUntil, agent: f.agent, transfermarktUrl: f.transfermarktUrl,
           bio: f.bio, email: f.email, phone: f.phone, instagram: f.instagram, youtube: f.youtube
         });
         writeData(data);

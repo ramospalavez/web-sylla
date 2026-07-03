@@ -74,18 +74,21 @@ function renderDashboardPage(data, saved) {
         <div class="form-field"><label>Posición</label><input name="position" value="${e(p.position)}"></div>
         <div class="form-field"><label>Dorsal</label><input name="squadNumber" value="${e(p.squadNumber)}"></div>
         <div class="form-field"><label>Fecha de nacimiento</label><input name="birthdate" value="${e(p.birthdate)}" placeholder="AAAA-MM-DD"></div>
+        <div class="form-field"><label>Lugar de nacimiento</label><input name="birthplace" value="${e(p.birthplace)}"></div>
         <div class="form-field"><label>Nacionalidad</label><input name="nationality" value="${e(p.nationality)}"></div>
         <div class="form-field"><label>Altura</label><input name="height" value="${e(p.height)}"></div>
         <div class="form-field"><label>Pie hábil</label><input name="foot" value="${e(p.foot)}"></div>
         <div class="form-field"><label>Club actual</label><input name="currentClub" value="${e(p.currentClub)}"></div>
+        <div class="form-field"><label>Fichado (fecha)</label><input name="signedDate" value="${e(p.signedDate)}" placeholder="AAAA-MM-DD"></div>
         <div class="form-field"><label>Valor de mercado</label><input name="marketValue" value="${e(p.marketValue)}"></div>
         <div class="form-field"><label>Contrato hasta</label><input name="contractUntil" value="${e(p.contractUntil)}" placeholder="AAAA-MM-DD"></div>
+        <div class="form-field"><label>Agente / Representante</label><input name="agent" value="${e(p.agent)}"></div>
         <div class="form-field full"><label>Enlace a Transfermarkt</label><input name="transfermarktUrl" value="${e(p.transfermarktUrl)}"></div>
         <div class="form-field full"><label>Biografía</label><textarea name="bio">${e(p.bio)}</textarea></div>
-        <div class="form-field"><label>Email de contacto</label><input name="email" value="${e(p.email)}"></div>
-        <div class="form-field"><label>Teléfono</label><input name="phone" value="${e(p.phone)}"></div>
-        <div class="form-field"><label>Instagram (URL)</label><input name="instagram" value="${e(p.instagram)}"></div>
-        <div class="form-field"><label>YouTube (URL)</label><input name="youtube" value="${e(p.youtube)}"></div>
+        <div class="form-field"><label>Email de contacto (aparece como ícono en el pie)</label><input name="email" value="${e(p.email)}"></div>
+        <div class="form-field"><label>Instagram — URL completa (aparece como ícono en el pie)</label><input name="instagram" value="${e(p.instagram)}" placeholder="https://instagram.com/usuario"></div>
+        <div class="form-field"><label>Teléfono (uso interno, no se muestra)</label><input name="phone" value="${e(p.phone)}"></div>
+        <div class="form-field"><label>YouTube (uso interno, no se muestra)</label><input name="youtube" value="${e(p.youtube)}"></div>
       </div>
       <button class="admin-btn" type="submit">Guardar datos</button>
     </form>

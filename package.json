@@ -1,0 +1,14 @@
+{
+  "name": "web-jugador",
+  "version": "1.0.0",
+  "description": "Sitio profesional de presentacion de futbolista con panel de administracion. Sin dependencias externas: solo usa el Node.js incluido de fabrica.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {}
+}

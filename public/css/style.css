@@ -231,8 +231,7 @@ body.has-floating-save .inline-save-btn{display:none;}
 .cs-wrap{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:var(--navy);color:#fff;padding:24px;}
 .cs-badge{font-size:48px;margin-bottom:18px;}
 .cs-name{font-size:14px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:10px;}
-.cs-title{font-size:30px;font-weight:800;margin-bottom:14px;}
-.cs-text{color:#aeb8c9;font-size:15px;max-width:420px;margin-bottom:24px;}
+.cs-title{font-size:30px;font-weight:800;margin-bottom:24px;}
 
 /* ---- Trayectoria: línea de tiempo con collage ---- */
 .tl-section{background:var(--navy);padding:56px 0;}

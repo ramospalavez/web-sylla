@@ -17,7 +17,6 @@ function renderComingSoonPage(data) {
   <div class="cs-badge">⚽</div>
   <div class="cs-name">${e(p.name)}</div>
   <div class="cs-title">Sitio en construcción</div>
-  <p class="cs-text">Estamos preparando la ficha oficial. Muy pronto vas a poder verla acá.</p>
   ${p.email ? `<a class="btn btn-gold" href="mailto:${e(p.email)}">Contacto</a>` : ''}
 </div>
 </body>

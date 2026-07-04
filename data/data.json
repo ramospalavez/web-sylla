@@ -389,7 +389,7 @@
       "id": "moralo",
       "club": "Moralo CP",
       "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_moralo.png",
-      "period": "2025",
+      "period": "2025 - 2026",
       "role": "Cesión",
       "visible": false,
       "note": "Cesión de rodaje en la segunda vuelta, interrumpida por una lesión de hombro. Capítulo de carácter y regreso.",
@@ -414,7 +414,8 @@
           "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/moralo_4.jpg",
           "featured": false
         }
-      ]
+      ],
+      "showNote": true
     },
     {
       "id": "recreativo",

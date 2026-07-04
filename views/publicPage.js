@@ -57,7 +57,7 @@ function renderPublicPage(data) {
           </div>
           ${c.role ? `<span class="tl-chip${isNow ? ' is-now' : ''}">${e(c.role)}</span>` : ''}
         </div>
-        ${c.note ? `<p class="tl-note">${e(c.note)}</p>` : ''}
+        ${(c.note && c.showNote !== false) ? `<p class="tl-note">${e(c.note)}</p>` : ''}
         ${photos.length ? `<div class="tl-photos" data-photos="${photosData}"></div>` : ''}
       </div>
     </div>`;
@@ -179,7 +179,7 @@ ${p.heroPhoto ? `<meta name="twitter:image" content="${e(p.heroPhoto)}">` : ''}
       ${p.signedDate ? `<div class="data-row"><div class="k">Fichado</div><div class="v">${e(p.signedDate)}</div></div>` : ''}
       ${p.marketValue ? `<div class="data-row"><div class="k">Valor de mercado</div><div class="v">${e(p.marketValue)}</div></div>` : ''}
       ${p.contractUntil ? `<div class="data-row"><div class="k">Contrato hasta</div><div class="v">${e(p.contractUntil)}</div></div>` : ''}
-      ${p.agent ? `<div class="data-row"><div class="k">Representación</div><div class="v">${e(p.agent)}</div></div>` : ''}
+      ${(p.agent && p.showAgent !== false) ? `<div class="data-row"><div class="k">Representación</div><div class="v">${e(p.agent)}</div></div>` : ''}
       <div class="data-row"><div class="k">Estadísticas ${e(data.seasonStats.season)}</div><div class="v">${e(data.seasonStats.matches)} PJ · ${e(data.seasonStats.goals)} goles · ${e(data.seasonStats.assists)} asist. · ${e(data.seasonStats.minutes)} min · ${e(data.seasonStats.yellowCards)} amar. · ${e(data.seasonStats.redCards)} rojas</div></div>
     </div>
     ${p.transfermarktUrl ? `<a class="tm-link" href="${e(p.transfermarktUrl)}" target="_blank" rel="noopener">Perfil completo en Transfermarkt ↗</a>` : ''}
@@ -228,7 +228,7 @@ ${data.news.length > 0 ? `<section id="noticias">
 
 <div class="contact-band">
   <div class="container">
-    ${p.agent ? `<div class="agent-line">Representado por ${e(p.agent)}</div>` : ''}
+    ${(p.agent && p.showAgent !== false) ? `<div class="agent-line">Representado por ${e(p.agent)}</div>` : ''}
     <div class="icon-row">
       ${p.email ? `<a class="icon-link" href="mailto:${e(p.email)}" aria-label="Email" title="${e(p.email)}">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>

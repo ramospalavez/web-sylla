@@ -24,6 +24,7 @@ const { putFile, deleteFile, publicUrl } = require('./lib/github');
 const { renderPublicPage } = require('./views/publicPage');
 const { renderLoginPage } = require('./views/loginPage');
 const { renderDashboardPage } = require('./views/dashboardPage');
+const { renderComingSoonPage } = require('./views/comingSoonPage');
 
 loadEnv(path.join(__dirname, '.env'));
 
@@ -162,6 +163,9 @@ async function handleRequest(req, res) {
     // --- Sitio público ---
     if (method === 'GET' && pathname === '/') {
       const data = await readData();
+      if (data.site && data.site.underConstruction) {
+        return sendHtml(res, 200, renderComingSoonPage(data));
+      }
       return sendHtml(res, 200, renderPublicPage(data));
     }
 
@@ -197,6 +201,16 @@ async function handleRequest(req, res) {
         return sendHtml(res, 200, renderDashboardPage(data, saved));
       }
 
+      if (method === 'POST' && pathname === '/admin/site') {
+        const body = await readBody(req, 1024 * 1024);
+        const f = parseUrlEncoded(body);
+        const data = await readData();
+        data.site = data.site || {};
+        data.site.underConstruction = f.underConstruction === '1';
+        await writeData(data);
+        return redirect(res, '/admin?saved=sitio');
+      }
+
       if (method === 'POST' && pathname === '/admin/player') {
         const body = await readBody(req, 1024 * 1024);
         const f = parseUrlEncoded(body);
@@ -205,7 +219,7 @@ async function handleRequest(req, res) {
           name: f.name, position: f.position, squadNumber: f.squadNumber,
           birthdate: f.birthdate, birthplace: f.birthplace, nationality: f.nationality, height: f.height,
           foot: f.foot, currentClub: f.currentClub, signedDate: f.signedDate, marketValue: f.marketValue,
-          contractUntil: f.contractUntil, agent: f.agent, transfermarktUrl: f.transfermarktUrl,
+          contractUntil: f.contractUntil, agent: f.agent, showAgent: f.showAgent === '1', transfermarktUrl: f.transfermarktUrl,
           bio: f.bio, email: f.email, phone: f.phone, instagram: f.instagram, youtube: f.youtube
         });
         await writeData(data);
@@ -282,6 +296,7 @@ async function handleRequest(req, res) {
           club.role = fields.role;
           club.note = fields.note || '';
           club.visible = fields.visible === '1';
+          club.showNote = fields.showNote === '1';
           if (files.crest) {
             if (club.crest) await deleteUploadedFile(club.crest);
             club.crest = await saveUploadedFile(files.crest, 'crests');

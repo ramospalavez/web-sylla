@@ -190,6 +190,31 @@ footer{padding:26px 0;color:var(--muted);font-size:12px;text-align:center;border
 .login-wrap h2{margin-bottom:20px;font-size:18px;}
 .error-msg{background:#fbe3e3;color:#a83232;padding:10px 14px;border-radius:5px;font-size:13px;margin-bottom:16px;}
 
+/* ---- Fotos por club (fuera del <form> de edición) ---- */
+.photo-thumbs{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;}
+.photo-thumb{width:78px;}
+.photo-thumb .thumb-frame{position:relative;width:78px;height:78px;border-radius:6px;overflow:hidden;border:2px solid var(--line);}
+.photo-thumb .thumb-frame.is-featured{border-color:var(--gold);}
+.photo-thumb .thumb-frame img{width:100%;height:100%;object-fit:cover;}
+.photo-thumb .thumb-actions{display:flex;gap:4px;margin-top:3px;}
+.photo-thumb .thumb-actions form{flex:1;}
+.photo-thumb .thumb-actions .admin-btn{width:100%;padding:3px 0;font-size:11px;margin:0;}
+
+/* ---- Botón de guardado flotante (panel admin) ---- */
+.floating-save{position:fixed;right:20px;bottom:20px;z-index:500;display:flex;flex-direction:column;align-items:flex-end;gap:6px;}
+.floating-save-label{background:var(--navy);color:#cdd6e4;font-size:11px;padding:4px 12px;border-radius:20px;box-shadow:0 2px 8px rgba(0,0,0,.18);max-width:220px;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.floating-save-btn{background:var(--gold);color:var(--navy);border:none;padding:12px 24px;border-radius:30px;font-weight:800;font-size:14px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.28);}
+.floating-save-btn:active{transform:scale(.97);}
+body.has-floating-save .inline-save-btn{display:none;}
+@media(max-width:600px){.floating-save{right:14px;bottom:14px;}.floating-save-label{max-width:150px;}}
+
+/* ---- Página "en construcción" ---- */
+.cs-wrap{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:var(--navy);color:#fff;padding:24px;}
+.cs-badge{font-size:48px;margin-bottom:18px;}
+.cs-name{font-size:14px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:10px;}
+.cs-title{font-size:30px;font-weight:800;margin-bottom:14px;}
+.cs-text{color:#aeb8c9;font-size:15px;max-width:420px;margin-bottom:24px;}
+
 /* ---- Trayectoria: línea de tiempo con collage ---- */
 .tl-section{background:var(--navy);padding:56px 0;}
 .tl-section .section-title{color:#fff;}

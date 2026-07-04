@@ -39,60 +39,186 @@
   },
   "clubHistory": [
     {
-      "id": "c1",
-      "club": "Granada CF C",
-      "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_granada.png",
-      "period": "2025 — Presente",
-      "role": "Filial"
-    },
-    {
-      "id": "moralo",
-      "club": "Moralo CP",
-      "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_moralo.png",
-      "period": "2025",
-      "role": "Cesión"
-    },
-    {
-      "id": "viveiro",
-      "club": "Viveiro CF",
-      "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_viveiro.png",
-      "period": "2024",
-      "role": "Primer equipo"
-    },
-    {
-      "id": "znojmo",
-      "club": "1.SC Znojmo FK",
-      "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_znojmo.png",
-      "period": "2024",
-      "role": "Internacional (Chequia)"
-    },
-    {
-      "id": "estradense",
-      "club": "CD Estradense",
-      "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_estradense.png",
-      "period": "2024",
-      "role": "Primer equipo"
-    },
-    {
-      "id": "praina",
-      "club": "Praíña AFC",
-      "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/mr69nq0byo8iq9.jpeg",
-      "period": "2023",
-      "role": "Primer equipo"
+      "id": "gfi",
+      "club": "Académie GFI (Guinea)",
+      "crest": null,
+      "period": "Fútbol base",
+      "role": "Formativo",
+      "visible": true,
+      "note": "Donde empezó todo. Del fútbol base al torneo de Senegal que le abrió las puertas de Europa.",
+      "photos": [
+        {
+          "id": "19f2d517cd27622",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/mockup/guinea.jpg",
+          "featured": false
+        }
+      ]
     },
     {
       "id": "ourense",
       "club": "Ourense CF",
       "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_ourense.png",
       "period": "2022 — 2023",
-      "role": "Cantera"
+      "role": "Cantera",
+      "visible": true,
+      "note": "Su primer contrato en España. Ni año y medio parado por el papeleo frenó su ambición.",
+      "photos": [
+        {
+          "id": "19f2d517cd38dd3",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/mockup/ourense.jpg",
+          "featured": false
+        }
+      ]
     },
     {
-      "id": "gfi",
-      "club": "Académie GFI (Guinea)",
-      "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/mr69ncwbxf05wj.jpeg",
-      "period": "Fútbol base",
-      "role": "Formativo"
+      "id": "praina",
+      "club": "Praíña AFC",
+      "crest": null,
+      "period": "2023",
+      "role": "Primer equipo",
+      "visible": true,
+      "note": "Rodaje en la categoría absoluta.",
+      "photos": []
+    },
+    {
+      "id": "estradense",
+      "club": "CD Estradense",
+      "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_estradense.png",
+      "period": "2024",
+      "role": "Primer equipo",
+      "visible": true,
+      "note": "Sus primeros partidos como absoluto: 10 encuentros que ya olían a fútbol profesional.",
+      "photos": [
+        {
+          "id": "19f2d517cd44e93",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/mockup/estradense.jpg",
+          "featured": false
+        }
+      ]
+    },
+    {
+      "id": "znojmo",
+      "club": "1.SC Znojmo FK",
+      "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_znojmo.png",
+      "period": "2024",
+      "role": "Internacional (Chequia)",
+      "visible": true,
+      "note": "Experiencia internacional en la Primera División checa.",
+      "photos": [
+        {
+          "id": "19f2d517cd56b98",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/mockup/znojmo.jpg",
+          "featured": false
+        }
+      ]
+    },
+    {
+      "id": "viveiro",
+      "club": "Viveiro CF",
+      "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_viveiro.png",
+      "period": "2024",
+      "role": "Primer equipo",
+      "visible": true,
+      "note": "Su mejor curso hasta ahora: 27 partidos y goles celebrados con su gente.",
+      "photos": [
+        {
+          "id": "19f2d517cd66494",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/mockup/viveiro.jpg",
+          "featured": false
+        }
+      ]
+    },
+    {
+      "id": "c1",
+      "club": "Granada CF C",
+      "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_granada.png",
+      "period": "2025/26",
+      "role": "Filial (equipo C)",
+      "visible": true,
+      "note": "Su temporada en la estructura del Granada: partido y entrenamiento con el equipo C, antes de la cesión al Moralo.",
+      "photos": [
+        {
+          "id": "19f2d517cc67cc2",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/mockup/granada_01.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d517cc73a40",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/mockup/granada_02.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d517cc8a37d",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/mockup/granada_03.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d517cc977dc",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/mockup/granada_04.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d517cca9f47",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/mockup/granada_05.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d517ccb4470",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/mockup/granada_06.jpg",
+          "featured": true
+        },
+        {
+          "id": "19f2d517ccc22a4",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/mockup/granada_07.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d517ccd9ee5",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/mockup/granada_08.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d517cceb595",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/mockup/granada_09.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d517ccf4ffd",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/mockup/granada_10.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d517cd0279b",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/mockup/granada_11.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d517cd19242",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/mockup/granada_12.jpg",
+          "featured": false
+        }
+      ]
+    },
+    {
+      "id": "moralo",
+      "club": "Moralo CP",
+      "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_moralo.png",
+      "period": "2025",
+      "role": "Cesión",
+      "visible": false,
+      "note": "Cesión de rodaje en la segunda vuelta, interrumpida por una lesión de hombro. Capítulo de carácter y regreso.",
+      "photos": []
+    },
+    {
+      "id": "recreativo",
+      "club": "Recreativo Granada",
+      "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_granada.png",
+      "period": "2025 — Presente",
+      "role": "Filial",
+      "visible": true,
+      "current": true,
+      "note": "De vuelta en Granada tras la lesión y con un salto de categoría: del equipo C al filial.",
+      "photos": []
     }
   ],
   "gallery": [],

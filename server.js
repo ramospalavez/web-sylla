@@ -267,8 +267,27 @@ async function handleRequest(req, res) {
       }
 
       let m;
+      if (method === 'POST' && (m = pathname.match(/^\/admin\/club\/([^/]+)\/update$/))) {
+        const { fields, files } = await getMultipartFields(req, req.headers['content-type']);
+        const data = await readData();
+        const club = data.clubHistory.find((c) => c.id === m[1]);
+        if (club) {
+          club.club = fields.club;
+          club.period = fields.period;
+          club.role = fields.role;
+          if (files.crest) {
+            if (club.crest) await deleteUploadedFile(club.crest);
+            club.crest = await saveUploadedFile(files.crest, 'crests');
+          }
+          await writeData(data);
+        }
+        return redirect(res, '/admin?saved=club-actualizado');
+      }
+
       if (method === 'POST' && (m = pathname.match(/^\/admin\/club\/([^/]+)\/delete$/))) {
         const data = await readData();
+        const removed = data.clubHistory.find((c) => c.id === m[1]);
+        if (removed && removed.crest) await deleteUploadedFile(removed.crest);
         data.clubHistory = data.clubHistory.filter((c) => c.id !== m[1]);
         await writeData(data);
         return redirect(res, '/admin?saved=club-eliminado');

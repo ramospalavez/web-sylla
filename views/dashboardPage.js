@@ -6,11 +6,24 @@ function renderDashboardPage(data, saved) {
   const c = data.careerStats;
 
   const clubItems = data.clubHistory.map((club) => `
-    <div class="admin-list-item">
-      <div class="thumb">${club.crest ? `<img src="${e(club.crest)}">` : ''}</div>
-      <div class="grow"><strong>${e(club.club)}</strong> — ${e(club.period)} (${e(club.role)})</div>
+    <div class="admin-list-item" style="flex-direction:column;align-items:stretch;gap:10px;">
+      <form method="POST" action="/admin/club/${e(club.id)}/update" enctype="multipart/form-data">
+        <div class="form-grid">
+          <div class="form-field"><label>Club</label><input name="club" value="${e(club.club)}" required></div>
+          <div class="form-field"><label>Período</label><input name="period" value="${e(club.period)}" placeholder="2024 — Presente" required></div>
+          <div class="form-field"><label>Rol</label><input name="role" value="${e(club.role)}" placeholder="Titular / Formativas"></div>
+          <div class="form-field">
+            <label>Escudo (dejar vacío para conservar el actual)</label>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div class="thumb">${club.crest ? `<img src="${e(club.crest)}">` : ''}</div>
+              <input type="file" name="crest" accept="image/*">
+            </div>
+          </div>
+        </div>
+        <button class="admin-btn" type="submit" style="margin-top:10px;">Guardar cambios</button>
+      </form>
       <form method="POST" action="/admin/club/${e(club.id)}/delete">
-        <button class="admin-btn danger" type="submit">Eliminar</button>
+        <button class="admin-btn danger" type="submit">Eliminar club</button>
       </form>
     </div>
   `).join('');

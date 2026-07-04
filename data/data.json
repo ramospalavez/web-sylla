@@ -43,14 +43,56 @@
       "club": "Granada CF C",
       "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_granada.png",
       "period": "2025 — Presente",
-      "role": "Filial (equipo C)"
+      "role": "Filial"
     },
     {
       "id": "moralo",
       "club": "Moralo CP",
       "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_moralo.png",
-      "period": "2025 — 2026",
+      "period": "2025",
       "role": "Cesión"
+    },
+    {
+      "id": "viveiro",
+      "club": "Viveiro CF",
+      "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_viveiro.png",
+      "period": "2024",
+      "role": "Sénior"
+    },
+    {
+      "id": "znojmo",
+      "club": "1.SC Znojmo FK",
+      "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_znojmo.png",
+      "period": "2024",
+      "role": "Internacional (Chequia)"
+    },
+    {
+      "id": "estradense",
+      "club": "CD Estradense",
+      "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_estradense.png",
+      "period": "2024",
+      "role": "Sénior"
+    },
+    {
+      "id": "praina",
+      "club": "Praíña AFC",
+      "crest": null,
+      "period": "2023",
+      "role": "Sénior"
+    },
+    {
+      "id": "ourense",
+      "club": "Ourense CF",
+      "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_ourense.png",
+      "period": "2022 — 2023",
+      "role": "Cantera"
+    },
+    {
+      "id": "gfi",
+      "club": "Académie GFI (Guinea)",
+      "crest": null,
+      "period": "Fútbol base",
+      "role": "Formativo"
     }
   ],
   "gallery": [],

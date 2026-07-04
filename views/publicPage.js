@@ -32,18 +32,32 @@ function renderPublicPage(data) {
     ? p.bio.replace(/\s+/g, ' ').trim().slice(0, 180)
     : tagline;
 
-  const clubRows = data.clubHistory.map((c) => `
-    <div class="club-row">
-      <div class="crest">
-        ${c.crest ? `<img src="${e(c.crest)}" alt="${e(c.club)}">` : `<div class="ph" style="width:100%;height:100%;font-size:8px;">Escudo</div>`}
+  const monogram = (name) => (name || '').replace(/\([^)]*\)/g, '').trim()
+    .split(/\s+/).map((w) => w[0] || '').join('').slice(0, 3).toUpperCase();
+
+  const timelineNodes = data.clubHistory
+    .filter((c) => c.visible !== false)
+    .map((c) => {
+      const isNow = c.current === true;
+      const photos = Array.isArray(c.photos) ? c.photos : [];
+      const photosData = e(JSON.stringify(photos.map((ph) => ({ url: ph.url, featured: !!ph.featured }))));
+      return `
+    <div class="tl-node${isNow ? ' is-now' : ''}">
+      <span class="tl-dot"></span>
+      <div class="tl-card">
+        <div class="tl-head">
+          <div class="tl-crest">${c.crest ? `<img src="${e(c.crest)}" alt="${e(c.club)}">` : `<span>${e(monogram(c.club))}</span>`}</div>
+          <div class="tl-htext">
+            <div class="tl-club">${e(c.club)}</div>
+            <div class="tl-period">${e(c.period)}</div>
+          </div>
+          ${c.role ? `<span class="tl-chip${isNow ? ' is-now' : ''}">${e(c.role)}</span>` : ''}
+        </div>
+        ${c.note ? `<p class="tl-note">${e(c.note)}</p>` : ''}
+        ${photos.length ? `<div class="tl-photos" data-photos="${photosData}"></div>` : ''}
       </div>
-      <div>
-        <div class="club-name">${e(c.club)}</div>
-        <div class="club-period">${e(c.period)}</div>
-      </div>
-      <div class="club-role">${e(c.role)}</div>
-    </div>
-  `).join('') || `<div class="admin-list-item" style="padding:20px;">Todavía no hay clubes cargados.</div>`;
+    </div>`;
+    }).join('') || `<p class="empty-note">Todavía no hay clubes cargados.</p>`;
 
   const galleryHtml = data.gallery.length > 0
     ? `<div class="gallery-grid">${data.gallery.map((g) => `<div class="gallery-item"><img src="${e(g.url)}" alt="${e(g.caption)}"></div>`).join('')}</div>`
@@ -176,11 +190,11 @@ ${p.bio ? `<section>
   </div>
 </section>` : ''}
 
-<section id="trayectoria">
+<section id="trayectoria" class="tl-section">
   <div class="container">
     <div class="section-title">Trayectoria</div>
-    <div class="section-sub">Historial de clubes</div>
-    <div class="club-list">${clubRows}</div>
+    <div class="section-sub">De Conakry a Granada — cada club, su historia en fotos</div>
+    <div class="tl">${timelineNodes}</div>
   </div>
 </section>
 
@@ -223,6 +237,46 @@ ${data.news.length > 0 ? `<section id="noticias">
 </div>
 
 <footer>© ${new Date().getFullYear()} ${e(p.name)}</footer>
+
+<div id="tl-lb" class="tl-lb" onclick="this.style.display='none'"><img id="tl-lb-img" alt="Foto ampliada"><span class="tl-lb-x">×</span></div>
+
+<script>
+(function(){
+  var grids=[];
+  document.querySelectorAll('.tl-photos').forEach(function(box){
+    var photos;
+    try{photos=JSON.parse(box.getAttribute('data-photos')||'[]');}catch(e){photos=[];}
+    if(!photos.length)return;
+    var grid=document.createElement('div');grid.className='tl-grid';box.appendChild(grid);
+    var metas=photos.map(function(p){return{url:p.url,featured:!!p.featured,ratio:0.72};});
+    var done=0;
+    metas.forEach(function(mm){var im=new Image();im.onload=im.onerror=function(){if(im.naturalWidth)mm.ratio=im.naturalWidth/im.naturalHeight;done++;if(done===metas.length){grids.push({grid:grid,metas:metas});layout(grid,metas);}};im.src=mm.url;});
+  });
+  function layout(grid,metas){
+    var arr=metas.slice().sort(function(a,b){return (b.featured?1:0)-(a.featured?1:0);});
+    var cw=grid.clientWidth||600,gap=6,cols=cw<560?2:4;
+    var colW=(cw-(cols-1)*gap)/cols;
+    grid.style.gridTemplateColumns='repeat('+cols+',1fr)';
+    grid.style.gridAutoRows=Math.max(46,Math.round(colW*0.62))+'px';
+    var html='';
+    arr.forEach(function(m,i){
+      var land=m.ratio>1.15,feat=m.featured||i===0,cs,rs;
+      if(feat){cs=Math.min(2,cols);rs=3;}
+      else if(land){cs=Math.min(2,cols);rs=2;}
+      else{cs=1;rs=2;}
+      html+='<button class="tl-cell" style="grid-column:span '+cs+';grid-row:span '+rs+'" data-src="'+m.url+'"><img src="'+m.url+'" loading="lazy" alt=""></button>';
+    });
+    grid.innerHTML=html;
+  }
+  document.addEventListener('click',function(ev){
+    var cell=ev.target.closest?ev.target.closest('.tl-cell'):null;
+    if(!cell)return;
+    document.getElementById('tl-lb-img').src=cell.getAttribute('data-src');
+    document.getElementById('tl-lb').style.display='flex';
+  });
+  var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){grids.forEach(function(g){layout(g.grid,g.metas);});},150);});
+})();
+</script>
 
 </body>
 </html>`;

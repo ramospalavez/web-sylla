@@ -100,17 +100,19 @@ async function getMultipartFields(req, contentType) {
   const parts = parseMultipart(buffer, boundary);
   const fields = {};
   const files = {};
+  const fileParts = [];
   parts.forEach((part) => {
     if (!part.name) return;
     if (part.filename) {
       if (part.filename.trim() !== '') {
-        files[part.name] = part;
+        files[part.name] = part; // último con ese nombre (compatibilidad)
+        fileParts.push(part);     // todos, para subidas múltiples
       }
     } else {
       fields[part.name] = part.data.toString('utf-8');
     }
   });
-  return { fields, files };
+  return { fields, files, fileParts };
 }
 
 // Guarda un archivo subido. Si hay credenciales de GitHub, lo sube al repo
@@ -260,6 +262,9 @@ async function handleRequest(req, res) {
           club: fields.club,
           period: fields.period,
           role: fields.role,
+          note: fields.note || '',
+          visible: true,
+          photos: [],
           crest: files.crest ? await saveUploadedFile(files.crest, 'crests') : null
         });
         await writeData(data);
@@ -268,26 +273,62 @@ async function handleRequest(req, res) {
 
       let m;
       if (method === 'POST' && (m = pathname.match(/^\/admin\/club\/([^/]+)\/update$/))) {
-        const { fields, files } = await getMultipartFields(req, req.headers['content-type']);
+        const { fields, files, fileParts } = await getMultipartFields(req, req.headers['content-type']);
         const data = await readData();
         const club = data.clubHistory.find((c) => c.id === m[1]);
         if (club) {
           club.club = fields.club;
           club.period = fields.period;
           club.role = fields.role;
+          club.note = fields.note || '';
+          club.visible = fields.visible === '1';
           if (files.crest) {
             if (club.crest) await deleteUploadedFile(club.crest);
             club.crest = await saveUploadedFile(files.crest, 'crests');
+          }
+          // Subida en bloque: todas las fotos con nombre "photos" se agregan.
+          if (!Array.isArray(club.photos)) club.photos = [];
+          const newPhotos = (fileParts || []).filter((p) => p.name === 'photos');
+          for (const part of newPhotos) {
+            club.photos.push({ id: genId(), url: await saveUploadedFile(part, 'photos'), featured: false });
           }
           await writeData(data);
         }
         return redirect(res, '/admin?saved=club-actualizado');
       }
 
+      // Borrar una foto concreta de un club.
+      if (method === 'POST' && (m = pathname.match(/^\/admin\/club\/([^/]+)\/photo\/([^/]+)\/delete$/))) {
+        const data = await readData();
+        const club = data.clubHistory.find((c) => c.id === m[1]);
+        if (club && Array.isArray(club.photos)) {
+          const ph = club.photos.find((p) => p.id === m[2]);
+          if (ph) await deleteUploadedFile(ph.url);
+          club.photos = club.photos.filter((p) => p.id !== m[2]);
+          await writeData(data);
+        }
+        return redirect(res, '/admin?saved=foto-eliminada');
+      }
+
+      // Marcar/desmarcar una foto como destacada.
+      if (method === 'POST' && (m = pathname.match(/^\/admin\/club\/([^/]+)\/photo\/([^/]+)\/feature$/))) {
+        const data = await readData();
+        const club = data.clubHistory.find((c) => c.id === m[1]);
+        if (club && Array.isArray(club.photos)) {
+          const ph = club.photos.find((p) => p.id === m[2]);
+          if (ph) ph.featured = !ph.featured;
+          await writeData(data);
+        }
+        return redirect(res, '/admin?saved=foto-destacada');
+      }
+
       if (method === 'POST' && (m = pathname.match(/^\/admin\/club\/([^/]+)\/delete$/))) {
         const data = await readData();
         const removed = data.clubHistory.find((c) => c.id === m[1]);
-        if (removed && removed.crest) await deleteUploadedFile(removed.crest);
+        if (removed) {
+          if (removed.crest) await deleteUploadedFile(removed.crest);
+          for (const ph of (removed.photos || [])) await deleteUploadedFile(ph.url);
+        }
         data.clubHistory = data.clubHistory.filter((c) => c.id !== m[1]);
         await writeData(data);
         return redirect(res, '/admin?saved=club-eliminado');

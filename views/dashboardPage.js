@@ -5,7 +5,25 @@ function renderDashboardPage(data, saved) {
   const s = data.seasonStats;
   const c = data.careerStats;
 
-  const clubItems = data.clubHistory.map((club) => `
+  const clubItems = data.clubHistory.map((club) => {
+    const photos = Array.isArray(club.photos) ? club.photos : [];
+    const photosHtml = photos.length > 0
+      ? `<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;">${photos.map((ph) => `
+          <div style="width:78px;">
+            <div style="position:relative;width:78px;height:78px;border-radius:6px;overflow:hidden;border:2px solid ${ph.featured ? '#c8a24a' : '#e2e6ec'};">
+              <img src="${e(ph.url)}" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div style="display:flex;gap:4px;margin-top:3px;">
+              <form method="POST" action="/admin/club/${e(club.id)}/photo/${e(ph.id)}/feature" style="flex:1;">
+                <button class="admin-btn" type="submit" style="width:100%;padding:3px 0;font-size:11px;" title="Destacar en el collage">${ph.featured ? '★' : '☆'}</button>
+              </form>
+              <form method="POST" action="/admin/club/${e(club.id)}/photo/${e(ph.id)}/delete" style="flex:1;">
+                <button class="admin-btn danger" type="submit" style="width:100%;padding:3px 0;font-size:11px;">✕</button>
+              </form>
+            </div>
+          </div>`).join('')}</div>`
+      : `<p style="color:#8b95a5;font-size:13px;margin:6px 0 0;">Sin fotos todavía.</p>`;
+    return `
     <div class="admin-list-item" style="flex-direction:column;align-items:stretch;gap:10px;">
       <form method="POST" action="/admin/club/${e(club.id)}/update" enctype="multipart/form-data">
         <div class="form-grid">
@@ -19,14 +37,27 @@ function renderDashboardPage(data, saved) {
               <input type="file" name="crest" accept="image/*">
             </div>
           </div>
+          <div class="form-field full"><label>Nota / relato de esta etapa (se muestra bajo el club)</label><textarea name="note">${e(club.note || '')}</textarea></div>
+          <div class="form-field full">
+            <label>Agregar fotos de esta etapa (podés elegir varias a la vez)</label>
+            <input type="file" name="photos" accept="image/*" multiple>
+          </div>
+          <div class="form-field full">
+            <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+              <input type="checkbox" name="visible" value="1" ${club.visible !== false ? 'checked' : ''} style="width:auto;">
+              Visible en la web (destildá para ocultar esta etapa)
+            </label>
+          </div>
         </div>
+        <div class="form-field full" style="margin-top:4px;"><label>Fotos cargadas (★ destaca en el collage · ✕ elimina)</label>${photosHtml}</div>
         <button class="admin-btn" type="submit" style="margin-top:10px;">Guardar cambios</button>
       </form>
       <form method="POST" action="/admin/club/${e(club.id)}/delete">
         <button class="admin-btn danger" type="submit">Eliminar club</button>
       </form>
     </div>
-  `).join('');
+  `;
+  }).join('');
 
   const galleryItems = data.gallery.map((g) => `
     <div class="admin-list-item">

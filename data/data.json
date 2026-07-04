@@ -78,7 +78,9 @@
           "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/gfi_6.jpg",
           "featured": false
         }
-      ]
+      ],
+      "yearFrom": null,
+      "yearTo": null
     },
     {
       "id": "ourense",
@@ -99,7 +101,9 @@
           "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/ourense_2.jpg",
           "featured": false
         }
-      ]
+      ],
+      "yearFrom": 2022,
+      "yearTo": 2023
     },
     {
       "id": "praina",
@@ -109,7 +113,9 @@
       "role": "Primer equipo",
       "visible": true,
       "note": "Rodaje en la categoría absoluta.",
-      "photos": []
+      "photos": [],
+      "yearFrom": 2023,
+      "yearTo": 2023
     },
     {
       "id": "estradense",
@@ -195,7 +201,9 @@
           "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/estradense_15.jpg",
           "featured": false
         }
-      ]
+      ],
+      "yearFrom": 2024,
+      "yearTo": 2024
     },
     {
       "id": "znojmo",
@@ -251,7 +259,9 @@
           "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/znojmo_9.jpg",
           "featured": false
         }
-      ]
+      ],
+      "yearFrom": 2024,
+      "yearTo": 2024
     },
     {
       "id": "viveiro",
@@ -312,13 +322,15 @@
           "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/viveiro_10.jpg",
           "featured": false
         }
-      ]
+      ],
+      "yearFrom": 2024,
+      "yearTo": 2024
     },
     {
       "id": "c1",
       "club": "Granada CF C",
       "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_granada.png",
-      "period": "2025/26",
+      "period": "2025 — 2026",
       "role": "Filial (equipo C)",
       "visible": true,
       "note": "Su temporada en la estructura del Granada: partido y entrenamiento con el equipo C, antes de la cesión al Moralo.",
@@ -383,13 +395,15 @@
           "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/mockup/granada_12.jpg",
           "featured": false
         }
-      ]
+      ],
+      "yearFrom": 2025,
+      "yearTo": 2026
     },
     {
       "id": "moralo",
       "club": "Moralo CP",
       "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_moralo.png",
-      "period": "2025 - 2026",
+      "period": "2025",
       "role": "Cesión",
       "visible": false,
       "note": "Cesión de rodaje en la segunda vuelta, interrumpida por una lesión de hombro. Capítulo de carácter y regreso.",
@@ -415,7 +429,9 @@
           "featured": false
         }
       ],
-      "showNote": true
+      "showNote": true,
+      "yearFrom": 2025,
+      "yearTo": 2025
     },
     {
       "id": "recreativo",
@@ -426,7 +442,9 @@
       "visible": true,
       "current": true,
       "note": "De vuelta en Granada tras la lesión y con un salto de categoría: del equipo C al filial.",
-      "photos": []
+      "photos": [],
+      "yearFrom": 2025,
+      "yearTo": null
     }
   ],
   "gallery": [],

@@ -406,7 +406,7 @@
       "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_moralo.png",
       "period": "2025",
       "role": "Cesión",
-      "visible": false,
+      "visible": true,
       "note": "Cesión de rodaje en la segunda vuelta, interrumpida por una lesión de hombro. Capítulo de carácter y regreso.",
       "photos": [
         {

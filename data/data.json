@@ -444,7 +444,8 @@
       "note": "De vuelta en Granada tras la lesión y con un salto de categoría: del equipo C al filial.",
       "photos": [],
       "yearFrom": 2025,
-      "yearTo": null
+      "yearTo": null,
+      "showNote": true
     }
   ],
   "gallery": [],

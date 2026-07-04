@@ -45,7 +45,6 @@
       "crest": null,
       "period": "Fútbol base",
       "role": "Formativo",
-      "visible": true,
       "note": "Donde empezó todo. Del fútbol base al torneo de Senegal que le abrió las puertas de Europa.",
       "photos": [
         {
@@ -80,7 +79,8 @@
         }
       ],
       "yearFrom": null,
-      "yearTo": null
+      "yearTo": null,
+      "showPhotos": true
     },
     {
       "id": "ourense",
@@ -88,7 +88,6 @@
       "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_ourense.png",
       "period": "2022 — 2023",
       "role": "Cantera",
-      "visible": true,
       "note": "Su primer contrato en España. Ni año y medio parado por el papeleo frenó su ambición.",
       "photos": [
         {
@@ -103,7 +102,8 @@
         }
       ],
       "yearFrom": 2022,
-      "yearTo": 2023
+      "yearTo": 2023,
+      "showPhotos": true
     },
     {
       "id": "praina",
@@ -111,12 +111,12 @@
       "crest": null,
       "period": "2023 — 2024",
       "role": "Primer equipo",
-      "visible": true,
       "note": "Rodaje en la categoría absoluta.",
       "photos": [],
       "yearFrom": 2023,
       "yearTo": 2024,
-      "showNote": true
+      "showNote": true,
+      "showPhotos": true
     },
     {
       "id": "estradense",
@@ -124,7 +124,6 @@
       "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_estradense.png",
       "period": "2024",
       "role": "Primer equipo",
-      "visible": true,
       "note": "Sus primeros partidos como absoluto: 10 encuentros que ya olían a fútbol profesional.",
       "photos": [
         {
@@ -204,7 +203,8 @@
         }
       ],
       "yearFrom": 2024,
-      "yearTo": 2024
+      "yearTo": 2024,
+      "showPhotos": true
     },
     {
       "id": "znojmo",
@@ -212,7 +212,6 @@
       "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_znojmo.png",
       "period": "2024",
       "role": "Internacional (Chequia)",
-      "visible": true,
       "note": "Experiencia internacional en la Primera División checa.",
       "photos": [
         {
@@ -262,7 +261,8 @@
         }
       ],
       "yearFrom": 2024,
-      "yearTo": 2024
+      "yearTo": 2024,
+      "showPhotos": true
     },
     {
       "id": "viveiro",
@@ -270,7 +270,6 @@
       "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_viveiro.png",
       "period": "2024",
       "role": "Primer equipo",
-      "visible": true,
       "note": "Su mejor curso hasta ahora: 27 partidos y goles celebrados con su gente.",
       "photos": [
         {
@@ -325,7 +324,8 @@
         }
       ],
       "yearFrom": 2024,
-      "yearTo": 2024
+      "yearTo": 2024,
+      "showPhotos": true
     },
     {
       "id": "c1",
@@ -333,7 +333,6 @@
       "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_granada.png",
       "period": "2025 — 2026",
       "role": "Filial (equipo C)",
-      "visible": true,
       "note": "Su temporada en la estructura del Granada: partido y entrenamiento con el equipo C, antes de la cesión al Moralo.",
       "photos": [
         {
@@ -398,7 +397,8 @@
         }
       ],
       "yearFrom": 2025,
-      "yearTo": 2026
+      "yearTo": 2026,
+      "showPhotos": true
     },
     {
       "id": "moralo",
@@ -406,7 +406,6 @@
       "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_moralo.png",
       "period": "2025",
       "role": "Cesión",
-      "visible": true,
       "note": "Cesión de rodaje en la segunda vuelta, interrumpida por una lesión de hombro. Capítulo de carácter y regreso.",
       "photos": [
         {
@@ -430,9 +429,10 @@
           "featured": false
         }
       ],
-      "showNote": true,
+      "showNote": false,
       "yearFrom": 2025,
-      "yearTo": 2025
+      "yearTo": 2025,
+      "showPhotos": false
     },
     {
       "id": "recreativo",
@@ -440,13 +440,13 @@
       "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_granada.png",
       "period": "2025 — Presente",
       "role": "Filial",
-      "visible": true,
       "current": true,
       "note": "De vuelta en Granada tras la lesión y con un salto de categoría: del equipo C al filial.",
       "photos": [],
       "yearFrom": 2025,
       "yearTo": null,
-      "showNote": true
+      "showNote": true,
+      "showPhotos": true
     }
   ],
   "gallery": [],

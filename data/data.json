@@ -41,9 +41,16 @@
     {
       "id": "c1",
       "club": "Granada CF C",
-      "crest": null,
+      "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_granada.png",
       "period": "2025 — Presente",
-      "role": "Plantilla"
+      "role": "Filial (equipo C)"
+    },
+    {
+      "id": "moralo",
+      "club": "Moralo CP",
+      "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_moralo.png",
+      "period": "2025 — 2026",
+      "role": "Cesión"
     }
   ],
   "gallery": [],

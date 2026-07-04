@@ -153,16 +153,6 @@ ${p.heroPhoto ? `<meta name="twitter:image" content="${e(p.heroPhoto)}">` : ''}
       </div>
     </div>
   </div>
-
-  <div class="stat-strip">
-    <div class="container">
-      <div class="stat-cell"><div class="n">${e(data.careerStats.matches)}</div><div class="l">Partidos</div></div>
-      <div class="stat-cell"><div class="n">${e(data.careerStats.goals)}</div><div class="l">Goles</div></div>
-      <div class="stat-cell"><div class="n">${e(data.careerStats.assists)}</div><div class="l">Asistencias</div></div>
-      <div class="stat-cell"><div class="n">${e(data.careerStats.seasons)}</div><div class="l">Temporadas</div></div>
-      <div class="stat-cell"><div class="n">${e(data.careerStats.clubs)}</div><div class="l">Clubes</div></div>
-    </div>
-  </div>
 </header>
 
 <section id="stats">
@@ -180,7 +170,6 @@ ${p.heroPhoto ? `<meta name="twitter:image" content="${e(p.heroPhoto)}">` : ''}
       ${p.marketValue ? `<div class="data-row"><div class="k">Valor de mercado</div><div class="v">${e(p.marketValue)}</div></div>` : ''}
       ${p.contractUntil ? `<div class="data-row"><div class="k">Contrato hasta</div><div class="v">${e(p.contractUntil)}</div></div>` : ''}
       ${(p.agent && p.showAgent !== false) ? `<div class="data-row"><div class="k">Representación</div><div class="v">${e(p.agent)}</div></div>` : ''}
-      <div class="data-row"><div class="k">Estadísticas ${e(data.seasonStats.season)}</div><div class="v">${e(data.seasonStats.matches)} PJ · ${e(data.seasonStats.goals)} goles · ${e(data.seasonStats.assists)} asist. · ${e(data.seasonStats.minutes)} min · ${e(data.seasonStats.yellowCards)} amar. · ${e(data.seasonStats.redCards)} rojas</div></div>
     </div>
     ${p.transfermarktUrl ? `<a class="tm-link" href="${e(p.transfermarktUrl)}" target="_blank" rel="noopener">Perfil completo en Transfermarkt ↗</a>` : ''}
   </div>

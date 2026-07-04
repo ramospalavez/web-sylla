@@ -251,32 +251,9 @@ async function handleRequest(req, res) {
         const body = await readBody(req, 1024 * 1024);
         const f = parseUrlEncoded(body);
         const data = await readData();
-        data.seasonStats = {
-          season: f.season,
-          matches: Number(f.matches) || 0,
-          goals: Number(f.goals) || 0,
-          assists: Number(f.assists) || 0,
-          minutes: Number(f.minutes) || 0,
-          yellowCards: Number(f.yellowCards) || 0,
-          redCards: Number(f.redCards) || 0
-        };
+        data.seasonStats = { season: f.season };
         await writeData(data);
         return redirect(res, '/admin?saved=stats-temporada');
-      }
-
-      if (method === 'POST' && pathname === '/admin/stats/career') {
-        const body = await readBody(req, 1024 * 1024);
-        const f = parseUrlEncoded(body);
-        const data = await readData();
-        data.careerStats = {
-          matches: Number(f.matches) || 0,
-          goals: Number(f.goals) || 0,
-          assists: Number(f.assists) || 0,
-          seasons: Number(f.seasons) || 0,
-          clubs: Number(f.clubs) || 0
-        };
-        await writeData(data);
-        return redirect(res, '/admin?saved=stats-carrera');
       }
 
       if (method === 'POST' && pathname === '/admin/club') {

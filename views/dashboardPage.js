@@ -14,7 +14,6 @@ function yearOptions(selected, includePresente) {
 function renderDashboardPage(data, saved) {
   const p = data.player;
   const s = data.seasonStats;
-  const c = data.careerStats;
 
   const clubItems = data.clubHistory.map((club, idx) => {
     const photos = Array.isArray(club.photos) ? club.photos : [];
@@ -211,32 +210,13 @@ function renderDashboardPage(data, saved) {
   </div>
 
   <div class="admin-card">
-    <h3>Estadísticas — temporada actual</h3>
-    <form method="POST" action="/admin/stats/season" class="savable-form" id="form-season" data-label="Estadísticas de temporada">
+    <h3>Temporada</h3>
+    <p class="section-hint">Solo se usa como referencia en el subtítulo de "Ficha técnica" (ej. "Temporada 2025/26 · Datos de contrato..."). Los contadores de partidos/goles se quitaron de la web — ya está el enlace a Transfermarkt para eso.</p>
+    <form method="POST" action="/admin/stats/season" class="savable-form" id="form-season" data-label="Temporada">
       <div class="form-grid">
-        <div class="form-field"><label>Temporada</label><input name="season" value="${e(s.season)}"></div>
-        <div class="form-field"><label>Partidos</label><input type="number" name="matches" value="${e(s.matches)}"></div>
-        <div class="form-field"><label>Goles</label><input type="number" name="goals" value="${e(s.goals)}"></div>
-        <div class="form-field"><label>Asistencias</label><input type="number" name="assists" value="${e(s.assists)}"></div>
-        <div class="form-field"><label>Minutos jugados</label><input type="number" name="minutes" value="${e(s.minutes)}"></div>
-        <div class="form-field"><label>Tarjetas amarillas</label><input type="number" name="yellowCards" value="${e(s.yellowCards)}"></div>
-        <div class="form-field"><label>Tarjetas rojas</label><input type="number" name="redCards" value="${e(s.redCards)}"></div>
+        <div class="form-field"><label>Temporada</label><input name="season" value="${e(s.season)}" placeholder="2025/2026"></div>
       </div>
-      <button class="admin-btn inline-save-btn" type="submit">Guardar estadísticas</button>
-    </form>
-  </div>
-
-  <div class="admin-card">
-    <h3>Estadísticas — carrera</h3>
-    <form method="POST" action="/admin/stats/career" class="savable-form" id="form-career" data-label="Estadísticas de carrera">
-      <div class="form-grid">
-        <div class="form-field"><label>Partidos totales</label><input type="number" name="matches" value="${e(c.matches)}"></div>
-        <div class="form-field"><label>Goles totales</label><input type="number" name="goals" value="${e(c.goals)}"></div>
-        <div class="form-field"><label>Asistencias totales</label><input type="number" name="assists" value="${e(c.assists)}"></div>
-        <div class="form-field"><label>Temporadas</label><input type="number" name="seasons" value="${e(c.seasons)}"></div>
-        <div class="form-field"><label>Clubes</label><input type="number" name="clubs" value="${e(c.clubs)}"></div>
-      </div>
-      <button class="admin-btn inline-save-btn" type="submit">Guardar estadísticas</button>
+      <button class="admin-btn inline-save-btn" type="submit">Guardar</button>
     </form>
   </div>
 

@@ -430,5 +430,8 @@
   ],
   "gallery": [],
   "videos": [],
-  "news": []
+  "news": [],
+  "site": {
+    "underConstruction": true
+  }
 }

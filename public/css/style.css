@@ -185,6 +185,25 @@ footer{padding:26px 0;color:var(--muted);font-size:12px;text-align:center;border
 .admin-list-item .thumb{width:44px;height:44px;border-radius:5px;overflow:hidden;flex-shrink:0;background:#eee;}
 .admin-list-item .thumb img{width:100%;height:100%;object-fit:cover;}
 .admin-list-item .grow{flex:1;}
+.section-hint{color:var(--muted);font-size:12px;margin:-6px 0 14px;}
+
+/* ---- Bloque de club: barra fija + acordeón desplegable ---- */
+.club-block{border-bottom:1px solid var(--line);padding:10px 0;}
+.club-block:last-of-type{border-bottom:none;}
+.club-block-bar{display:flex;align-items:center;gap:10px;}
+.club-move-btns{display:flex;flex-direction:column;gap:2px;flex-shrink:0;}
+.move-btn{padding:2px 8px;font-size:10px;margin:0;line-height:1.4;background:var(--bg);color:var(--text);border:1px solid var(--line);}
+.move-btn:disabled{opacity:.3;cursor:default;}
+.club-block-crest{width:34px;height:34px;border-radius:5px;overflow:hidden;flex-shrink:0;background:#eee;}
+.club-block-crest img{width:100%;height:100%;object-fit:cover;}
+.club-block-title{flex:1;font-size:13px;}
+.club-block-sub{display:block;color:var(--muted);font-size:12px;margin-top:1px;}
+.club-details{margin-top:8px;margin-left:52px;}
+.club-details summary{cursor:pointer;color:var(--gold);font-size:13px;font-weight:600;padding:6px 0;list-style:none;}
+.club-details summary::-webkit-details-marker{display:none;}
+.club-details summary::before{content:"▸ ";}
+.club-details[open] summary::before{content:"▾ ";}
+.club-details form{margin-top:8px;}
 .saved-msg{background:#dff3e3;color:#1c6b32;padding:10px 16px;border-radius:5px;font-size:13px;margin-bottom:20px;}
 .login-wrap{max-width:360px;margin:100px auto;background:#fff;border:1px solid var(--line);border-radius:8px;padding:32px;}
 .login-wrap h2{margin-bottom:20px;font-size:18px;}

@@ -61,6 +61,17 @@ const MIME = {
   '.mov': 'video/quicktime'
 };
 
+// Arma el texto de período a partir de los años elegidos en el desplegable.
+// Si se completó un texto alternativo (para casos como "Fútbol base"), ese
+// texto manda y los años quedan solo como dato de referencia interno.
+function periodLabel(yearFrom, yearTo, periodText) {
+  if (periodText && periodText.trim()) return periodText.trim();
+  if (!yearFrom) return '';
+  if (!yearTo) return `${yearFrom} — Presente`;
+  if (yearFrom === yearTo) return String(yearFrom);
+  return `${yearFrom} — ${yearTo}`;
+}
+
 function isAuthed(req) {
   const cookies = parseCookies(req);
   return verifyToken(cookies[SESSION_COOKIE], SESSION_SECRET);
@@ -271,13 +282,19 @@ async function handleRequest(req, res) {
       if (method === 'POST' && pathname === '/admin/club') {
         const { fields, files } = await getMultipartFields(req, req.headers['content-type']);
         const data = await readData();
-        data.clubHistory.unshift({
+        const yearFrom = fields.yearFrom ? Number(fields.yearFrom) : null;
+        const yearTo = fields.yearTo ? Number(fields.yearTo) : null;
+        // Se agrega al final del historial (la posición más reciente / presente).
+        data.clubHistory.push({
           id: genId(),
           club: fields.club,
-          period: fields.period,
+          period: periodLabel(yearFrom, yearTo, fields.periodText),
+          yearFrom,
+          yearTo,
           role: fields.role,
-          note: fields.note || '',
+          note: '',
           visible: true,
+          showNote: true,
           photos: [],
           crest: files.crest ? await saveUploadedFile(files.crest, 'crests') : null
         });
@@ -291,8 +308,12 @@ async function handleRequest(req, res) {
         const data = await readData();
         const club = data.clubHistory.find((c) => c.id === m[1]);
         if (club) {
+          const yearFrom = fields.yearFrom ? Number(fields.yearFrom) : null;
+          const yearTo = fields.yearTo ? Number(fields.yearTo) : null;
           club.club = fields.club;
-          club.period = fields.period;
+          club.yearFrom = yearFrom;
+          club.yearTo = yearTo;
+          club.period = periodLabel(yearFrom, yearTo, fields.periodText);
           club.role = fields.role;
           club.note = fields.note || '';
           club.visible = fields.visible === '1';
@@ -310,6 +331,25 @@ async function handleRequest(req, res) {
           await writeData(data);
         }
         return redirect(res, '/admin?saved=club-actualizado');
+      }
+
+      // Reordenar: subir/bajar un club una posición (el orden del array define
+      // tanto el orden en /admin como el orden de la línea de tiempo pública).
+      if (method === 'POST' && (m = pathname.match(/^\/admin\/club\/([^/]+)\/move$/))) {
+        const body = await readBody(req, 1024 * 1024);
+        const f = parseUrlEncoded(body);
+        const data = await readData();
+        const idx = data.clubHistory.findIndex((c) => c.id === m[1]);
+        if (idx !== -1) {
+          const swapWith = f.direction === 'up' ? idx - 1 : idx + 1;
+          if (swapWith >= 0 && swapWith < data.clubHistory.length) {
+            const tmp = data.clubHistory[idx];
+            data.clubHistory[idx] = data.clubHistory[swapWith];
+            data.clubHistory[swapWith] = tmp;
+            await writeData(data);
+          }
+        }
+        return redirect(res, '/admin?saved=club-reordenado');
       }
 
       // Borrar una foto concreta de un club.

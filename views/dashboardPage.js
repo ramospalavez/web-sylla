@@ -1,12 +1,25 @@
 const { escapeHtml: e } = require('../lib/escape');
 
+function yearOptions(selected, includePresente) {
+  const nowYear = new Date().getFullYear();
+  const years = [];
+  for (let y = nowYear + 2; y >= 2010; y--) years.push(y);
+  let html = includePresente
+    ? `<option value="" ${!selected ? 'selected' : ''}>Presente</option>`
+    : `<option value="">—</option>`;
+  html += years.map((y) => `<option value="${y}" ${Number(selected) === y ? 'selected' : ''}>${y}</option>`).join('');
+  return html;
+}
+
 function renderDashboardPage(data, saved) {
   const p = data.player;
   const s = data.seasonStats;
   const c = data.careerStats;
 
-  const clubItems = data.clubHistory.map((club) => {
+  const clubItems = data.clubHistory.map((club, idx) => {
     const photos = Array.isArray(club.photos) ? club.photos : [];
+    const isFirst = idx === 0;
+    const isLast = idx === data.clubHistory.length - 1;
     // Importante: estos mini-formularios van FUERA del <form> de edición del club.
     // Un <form> dentro de otro <form> es HTML inválido — el navegador lo ignora
     // y los botones terminan enviando el formulario grande equivocado.
@@ -27,46 +40,66 @@ function renderDashboardPage(data, saved) {
           </div>`).join('')}</div>`
       : `<p class="empty-note" style="margin-left:0;">Sin fotos todavía.</p>`;
     return `
-    <div class="admin-list-item" style="flex-direction:column;align-items:stretch;gap:10px;">
-      <form method="POST" action="/admin/club/${e(club.id)}/update" enctype="multipart/form-data" class="savable-form" id="form-club-${e(club.id)}" data-label="${e(club.club)}">
-        <div class="form-grid">
-          <div class="form-field"><label>Club</label><input name="club" value="${e(club.club)}" required></div>
-          <div class="form-field"><label>Período</label><input name="period" value="${e(club.period)}" placeholder="2024 — Presente" required></div>
-          <div class="form-field"><label>Rol</label><input name="role" value="${e(club.role)}" placeholder="Titular / Formativas"></div>
-          <div class="form-field">
-            <label>Escudo (dejar vacío para conservar el actual)</label>
-            <div style="display:flex;align-items:center;gap:10px;">
-              <div class="thumb">${club.crest ? `<img src="${e(club.crest)}">` : ''}</div>
-              <input type="file" name="crest" accept="image/*">
+    <div class="club-block">
+      <div class="club-block-bar">
+        <div class="club-move-btns">
+          <form method="POST" action="/admin/club/${e(club.id)}/move"><input type="hidden" name="direction" value="up">
+            <button class="admin-btn move-btn" type="submit" title="Mover antes (más viejo)" ${isFirst ? 'disabled' : ''}>▲</button>
+          </form>
+          <form method="POST" action="/admin/club/${e(club.id)}/move"><input type="hidden" name="direction" value="down">
+            <button class="admin-btn move-btn" type="submit" title="Mover después (más reciente)" ${isLast ? 'disabled' : ''}>▼</button>
+          </form>
+        </div>
+        <div class="club-block-crest">${club.crest ? `<img src="${e(club.crest)}">` : ''}</div>
+        <div class="club-block-title">
+          <strong>${e(club.club) || '(sin nombre)'}</strong>
+          <span class="club-block-sub">${e(club.period)}${club.role ? ` · ${e(club.role)}` : ''}${club.visible === false ? ' · oculto' : ''}</span>
+        </div>
+      </div>
+      <details class="club-details">
+        <summary>Editar etapa / fotos</summary>
+        <form method="POST" action="/admin/club/${e(club.id)}/update" enctype="multipart/form-data" class="savable-form" id="form-club-${e(club.id)}" data-label="${e(club.club)}">
+          <div class="form-grid">
+            <div class="form-field"><label>Club</label><input name="club" value="${e(club.club)}" required></div>
+            <div class="form-field"><label>Rol</label><input name="role" value="${e(club.role)}" placeholder="Titular / Formativas"></div>
+            <div class="form-field"><label>Desde (año)</label><select name="yearFrom">${yearOptions(club.yearFrom, false)}</select></div>
+            <div class="form-field"><label>Hasta</label><select name="yearTo">${yearOptions(club.yearTo, true)}</select></div>
+            <div class="form-field full"><label>Texto alternativo de período (opcional — si lo completás, reemplaza a los años; usalo para casos como "Fútbol base")</label><input name="periodText" value="${club.yearFrom ? '' : e(club.period || '')}" placeholder="Ej: Fútbol base"></div>
+            <div class="form-field">
+              <label>Escudo (dejar vacío para conservar el actual)</label>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <div class="thumb">${club.crest ? `<img src="${e(club.crest)}">` : ''}</div>
+                <input type="file" name="crest" accept="image/*">
+              </div>
+            </div>
+            <div class="form-field full"><label>Nota / relato de esta etapa (se muestra bajo el club)</label><textarea name="note">${e(club.note || '')}</textarea></div>
+            <div class="form-field full">
+              <label>Agregar fotos de esta etapa (podés elegir varias a la vez)</label>
+              <input type="file" name="photos" accept="image/*" multiple>
+            </div>
+            <div class="form-field full">
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+                <input type="checkbox" name="visible" value="1" ${club.visible !== false ? 'checked' : ''} style="width:auto;">
+                Visible en la web (destildá para ocultar toda esta etapa)
+              </label>
+            </div>
+            <div class="form-field full">
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+                <input type="checkbox" name="showNote" value="1" ${club.showNote !== false ? 'checked' : ''} style="width:auto;">
+                Mostrar la nota/descripción de esta etapa en la web (destildá para ocultar solo el texto)
+              </label>
             </div>
           </div>
-          <div class="form-field full"><label>Nota / relato de esta etapa (se muestra bajo el club)</label><textarea name="note">${e(club.note || '')}</textarea></div>
-          <div class="form-field full">
-            <label>Agregar fotos de esta etapa (podés elegir varias a la vez)</label>
-            <input type="file" name="photos" accept="image/*" multiple>
-          </div>
-          <div class="form-field full">
-            <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
-              <input type="checkbox" name="visible" value="1" ${club.visible !== false ? 'checked' : ''} style="width:auto;">
-              Visible en la web (destildá para ocultar toda esta etapa)
-            </label>
-          </div>
-          <div class="form-field full">
-            <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
-              <input type="checkbox" name="showNote" value="1" ${club.showNote !== false ? 'checked' : ''} style="width:auto;">
-              Mostrar la nota/descripción de esta etapa en la web (destildá para ocultar solo el texto)
-            </label>
-          </div>
+          <button class="admin-btn inline-save-btn" type="submit" style="margin-top:10px;">Guardar cambios</button>
+        </form>
+        <div style="margin-top:12px;">
+          <label>Fotos cargadas (★ destaca en el collage · ✕ elimina)</label>
+          ${photosHtml}
         </div>
-        <button class="admin-btn inline-save-btn" type="submit" style="margin-top:10px;">Guardar cambios</button>
-      </form>
-      <div>
-        <label>Fotos cargadas (★ destaca en el collage · ✕ elimina)</label>
-        ${photosHtml}
-      </div>
-      <form method="POST" action="/admin/club/${e(club.id)}/delete">
-        <button class="admin-btn danger" type="submit">Eliminar club</button>
-      </form>
+        <form method="POST" action="/admin/club/${e(club.id)}/delete" style="margin-top:10px;">
+          <button class="admin-btn danger" type="submit">Eliminar club</button>
+        </form>
+      </details>
     </div>
   `;
   }).join('');
@@ -209,16 +242,22 @@ function renderDashboardPage(data, saved) {
 
   <div class="admin-card">
     <h3>Historial de clubes</h3>
+    <p class="section-hint">Del más viejo (arriba) al presente (abajo). Usá ▲▼ para reordenar; tocá "Editar etapa" para desplegar los datos de cada uno.</p>
     ${clubItems}
-    <form method="POST" action="/admin/club" enctype="multipart/form-data" style="margin-top:16px;">
-      <div class="form-grid">
-        <div class="form-field"><label>Club</label><input name="club" required></div>
-        <div class="form-field"><label>Período</label><input name="period" placeholder="2024 — Presente" required></div>
-        <div class="form-field"><label>Rol</label><input name="role" placeholder="Titular / Formativas"></div>
-        <div class="form-field"><label>Escudo (imagen)</label><input type="file" name="crest" accept="image/*"></div>
-      </div>
-      <button class="admin-btn" type="submit">Añadir club</button>
-    </form>
+    <details class="club-details" style="margin-top:16px;">
+      <summary>+ Añadir club nuevo</summary>
+      <form method="POST" action="/admin/club" enctype="multipart/form-data">
+        <div class="form-grid">
+          <div class="form-field"><label>Club</label><input name="club" required></div>
+          <div class="form-field"><label>Rol</label><input name="role" placeholder="Titular / Formativas"></div>
+          <div class="form-field"><label>Desde (año)</label><select name="yearFrom">${yearOptions(null, false)}</select></div>
+          <div class="form-field"><label>Hasta</label><select name="yearTo">${yearOptions(null, true)}</select></div>
+          <div class="form-field full"><label>Texto alternativo de período (opcional)</label><input name="periodText" placeholder="Ej: Fútbol base"></div>
+          <div class="form-field"><label>Escudo (imagen)</label><input type="file" name="crest" accept="image/*"></div>
+        </div>
+        <button class="admin-btn" type="submit" style="margin-top:10px;">Añadir club (se agrega al final, el más reciente)</button>
+      </form>
+    </details>
   </div>
 
   <div class="admin-card">

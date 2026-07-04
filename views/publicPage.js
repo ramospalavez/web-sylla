@@ -1,10 +1,36 @@
 const { escapeHtml: e } = require('../lib/escape');
 
+function calcAge(birthdate) {
+  if (!birthdate) return null;
+  let d;
+  // Acepta "AAAA-MM-DD" (ISO) y "DD/MM/AAAA".
+  const dmy = String(birthdate).match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  if (dmy) {
+    d = new Date(Number(dmy[3]), Number(dmy[2]) - 1, Number(dmy[1]));
+  } else {
+    d = new Date(birthdate);
+  }
+  if (isNaN(d.getTime())) return null;
+  const now = new Date();
+  let age = now.getFullYear() - d.getFullYear();
+  const m = now.getMonth() - d.getMonth();
+  if (m < 0 || (m === 0 && now.getDate() < d.getDate())) age--;
+  return (age > 0 && age < 120) ? age : null;
+}
+
 function renderPublicPage(data) {
   const p = data.player;
   const nameParts = (p.name || '').split(' ');
   const firstName = nameParts[0] || '';
   const restName = nameParts.slice(1).join(' ');
+  const age = calcAge(p.birthdate);
+
+  // Texto para buscadores y para cuando se comparte el link (WhatsApp/redes).
+  const tagline = [p.position, p.currentClub, p.nationality, age ? `${age} años` : '']
+    .filter(Boolean).join(' · ');
+  const metaDesc = (p.bio && p.bio.trim())
+    ? p.bio.replace(/\s+/g, ' ').trim().slice(0, 180)
+    : tagline;
 
   const clubRows = data.clubHistory.map((c) => `
     <div class="club-row">
@@ -56,6 +82,15 @@ function renderPublicPage(data) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${e(p.name)} | Ficha oficial</title>
+<meta name="description" content="${e(metaDesc)}">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="${e(p.name)}${p.position ? ` — ${e(p.position)}` : ''}">
+<meta property="og:description" content="${e(metaDesc)}">
+${p.heroPhoto ? `<meta property="og:image" content="${e(p.heroPhoto)}">` : ''}
+<meta name="twitter:card" content="${p.heroPhoto ? 'summary_large_image' : 'summary'}">
+<meta name="twitter:title" content="${e(p.name)}${p.position ? ` — ${e(p.position)}` : ''}">
+<meta name="twitter:description" content="${e(metaDesc)}">
+${p.heroPhoto ? `<meta name="twitter:image" content="${e(p.heroPhoto)}">` : ''}
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.85em%22 font-size=%2290%22>%E2%9A%BD</text></svg>">
 <link rel="stylesheet" href="/css/style.css">
 </head>
@@ -68,9 +103,9 @@ function renderPublicPage(data) {
       <a href="#ficha">Ficha</a>
       <a href="#stats">Estadísticas</a>
       <a href="#trayectoria">Trayectoria</a>
-      <a href="#galeria">Galería</a>
-      <a href="#videos">Videos</a>
-      <a href="#noticias">Noticias</a>
+      ${data.gallery.length > 0 ? `<a href="#galeria">Galería</a>` : ''}
+      ${data.videos.length > 0 ? `<a href="#videos">Videos</a>` : ''}
+      ${data.news.length > 0 ? `<a href="#noticias">Noticias</a>` : ''}
     </div>
   </div>
 </nav>
@@ -83,16 +118,19 @@ function renderPublicPage(data) {
         : `<div class="ph" style="width:100%;height:100%;">[ Foto principal —<br>subir desde /admin ]</div>`}
     </div>
     <div class="hero-info">
-      <div class="hero-number">Nº ${e(p.squadNumber)} · ${e(p.position)}</div>
+      ${(p.squadNumber || p.position)
+        ? `<div class="hero-number">${[p.squadNumber ? `Nº ${e(p.squadNumber)}` : '', p.position ? e(p.position) : ''].filter(Boolean).join(' · ')}</div>`
+        : ''}
       <div class="hero-name">${e(p.name)}</div>
       <div class="hero-meta">
-        <span><strong>${e(p.currentClub)}</strong></span>
+        ${p.currentClub ? `<span><strong>${e(p.currentClub)}</strong></span>` : ''}
+        ${age ? `<span>${age} años</span>` : ''}
         ${p.nationality ? `<span>${e(p.nationality)}</span>` : ''}
         ${p.height ? `<span>${e(p.height)}</span>` : ''}
         ${p.foot ? `<span>Pie: ${e(p.foot)}</span>` : ''}
       </div>
       <div class="hero-links">
-        <a class="btn btn-gold" href="#noticias">Últimas noticias</a>
+        <a class="btn btn-gold" href="${data.news.length > 0 ? '#noticias' : '#trayectoria'}">${data.news.length > 0 ? 'Últimas noticias' : 'Ver trayectoria'}</a>
         ${p.transfermarktUrl ? `<a class="btn btn-outline" href="${e(p.transfermarktUrl)}" target="_blank" rel="noopener">Ver en Transfermarkt ↗</a>` : ''}
       </div>
     </div>
@@ -114,12 +152,12 @@ function renderPublicPage(data) {
     <div class="section-title">Ficha técnica</div>
     <div class="section-sub">Temporada ${e(data.seasonStats.season)} · Datos de contrato y valor de mercado</div>
     <div class="data-table">
-      <div class="data-row"><div class="k">Fecha de nacimiento</div><div class="v">${e(p.birthdate)}</div></div>
+      ${p.birthdate ? `<div class="data-row"><div class="k">Fecha de nacimiento</div><div class="v">${e(p.birthdate)}${age ? ` · ${age} años` : ''}</div></div>` : ''}
       ${p.birthplace ? `<div class="data-row"><div class="k">Lugar de nacimiento</div><div class="v">${e(p.birthplace)}</div></div>` : ''}
-      <div class="data-row"><div class="k">Nacionalidad</div><div class="v">${e(p.nationality)}</div></div>
+      ${p.nationality ? `<div class="data-row"><div class="k">Nacionalidad</div><div class="v">${e(p.nationality)}</div></div>` : ''}
       ${p.height ? `<div class="data-row"><div class="k">Altura</div><div class="v">${e(p.height)}</div></div>` : ''}
       ${p.foot ? `<div class="data-row"><div class="k">Pie hábil</div><div class="v">${e(p.foot)}</div></div>` : ''}
-      <div class="data-row"><div class="k">Club actual</div><div class="v">${e(p.currentClub)}</div></div>
+      ${p.currentClub ? `<div class="data-row"><div class="k">Club actual</div><div class="v">${e(p.currentClub)}</div></div>` : ''}
       ${p.signedDate ? `<div class="data-row"><div class="k">Fichado</div><div class="v">${e(p.signedDate)}</div></div>` : ''}
       ${p.marketValue ? `<div class="data-row"><div class="k">Valor de mercado</div><div class="v">${e(p.marketValue)}</div></div>` : ''}
       ${p.contractUntil ? `<div class="data-row"><div class="k">Contrato hasta</div><div class="v">${e(p.contractUntil)}</div></div>` : ''}
@@ -130,13 +168,13 @@ function renderPublicPage(data) {
   </div>
 </section>
 
-<section>
+${p.bio ? `<section>
   <div class="container">
     <div class="section-title">Sobre el jugador</div>
     <div class="section-sub">&nbsp;</div>
     <p class="bio-text">${e(p.bio)}</p>
   </div>
-</section>
+</section>` : ''}
 
 <section id="trayectoria">
   <div class="container">
@@ -146,29 +184,29 @@ function renderPublicPage(data) {
   </div>
 </section>
 
-<section id="galeria">
+${data.gallery.length > 0 ? `<section id="galeria">
   <div class="container">
     <div class="section-title">Galería</div>
     <div class="section-sub">Fotos de partidos y entrenamientos</div>
     ${galleryHtml}
   </div>
-</section>
+</section>` : ''}
 
-<section id="videos">
+${data.videos.length > 0 ? `<section id="videos">
   <div class="container">
     <div class="section-title">Videos y highlights</div>
     <div class="section-sub">Jugadas y goles destacados</div>
     ${videosHtml}
   </div>
-</section>
+</section>` : ''}
 
-<section id="noticias">
+${data.news.length > 0 ? `<section id="noticias">
   <div class="container">
     <div class="section-title">Noticias</div>
     <div class="section-sub">Menciones y notas de prensa</div>
     ${newsHtml}
   </div>
-</section>
+</section>` : ''}
 
 <div class="contact-band">
   <div class="container">

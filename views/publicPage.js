@@ -23,6 +23,10 @@ function renderPublicPage(data) {
   const nameParts = (p.name || '').split(' ');
   const firstName = nameParts[0] || '';
   const restName = nameParts.slice(1).join(' ');
+  // Marca del nav: nombre compacto, sin el primer nombre si hay 3+ palabras.
+  const brandWords = nameParts.length >= 3 ? nameParts.slice(1) : nameParts;
+  const brandFirst = brandWords[0] || '';
+  const brandRest = brandWords.slice(1).join(' ');
   const age = calcAge(p.birthdate);
 
   // Texto para buscadores y para cuando se comparte el link (WhatsApp/redes).
@@ -112,7 +116,7 @@ ${p.heroPhoto ? `<meta name="twitter:image" content="${e(p.heroPhoto)}">` : ''}
 
 <nav class="site-nav">
   <div class="container">
-    <div class="brand">${e(firstName)} <span>${e(restName)}</span></div>
+    <div class="brand">${e(brandFirst)} <span>${e(brandRest)}</span></div>
     <div class="nav-links">
       <a href="#ficha">Ficha</a>
       <a href="#stats">Estadísticas</a>

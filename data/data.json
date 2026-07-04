@@ -109,13 +109,14 @@
       "id": "praina",
       "club": "Praíña AFC",
       "crest": null,
-      "period": "2023",
+      "period": "2023 — 2024",
       "role": "Primer equipo",
       "visible": true,
       "note": "Rodaje en la categoría absoluta.",
       "photos": [],
       "yearFrom": 2023,
-      "yearTo": 2023
+      "yearTo": 2024,
+      "showNote": true
     },
     {
       "id": "estradense",

@@ -40,10 +40,9 @@ function renderPublicPage(data) {
     .split(/\s+/).map((w) => w[0] || '').join('').slice(0, 3).toUpperCase();
 
   const timelineNodes = data.clubHistory
-    .filter((c) => c.visible !== false)
     .map((c) => {
       const isNow = c.current === true;
-      const photos = Array.isArray(c.photos) ? c.photos : [];
+      const photos = (c.showPhotos !== false && Array.isArray(c.photos)) ? c.photos : [];
       const photosData = e(JSON.stringify(photos.map((ph) => ({ url: ph.url, featured: !!ph.featured }))));
       return `
     <div class="tl-node${isNow ? ' is-now' : ''}">

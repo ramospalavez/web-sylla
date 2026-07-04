@@ -270,8 +270,8 @@ async function handleRequest(req, res) {
           yearTo,
           role: fields.role,
           note: '',
-          visible: true,
           showNote: true,
+          showPhotos: true,
           photos: [],
           crest: files.crest ? await saveUploadedFile(files.crest, 'crests') : null
         });
@@ -293,8 +293,8 @@ async function handleRequest(req, res) {
           club.period = periodLabel(yearFrom, yearTo, fields.periodText);
           club.role = fields.role;
           club.note = fields.note || '';
-          club.visible = fields.visible === '1';
           club.showNote = fields.showNote === '1';
+          club.showPhotos = fields.showPhotos === '1';
           if (files.crest) {
             if (club.crest) await deleteUploadedFile(club.crest);
             club.crest = await saveUploadedFile(files.crest, 'crests');

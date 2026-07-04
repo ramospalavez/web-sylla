@@ -52,7 +52,7 @@ function renderDashboardPage(data, saved) {
         <div class="club-block-crest">${club.crest ? `<img src="${e(club.crest)}">` : ''}</div>
         <div class="club-block-title">
           <strong>${e(club.club) || '(sin nombre)'}</strong>
-          <span class="club-block-sub">${e(club.period)}${club.role ? ` · ${e(club.role)}` : ''}${club.visible === false ? ' · oculto' : ''}</span>
+          <span class="club-block-sub">${e(club.period)}${club.role ? ` · ${e(club.role)}` : ''}${club.showNote === false ? ' · nota oculta' : ''}${club.showPhotos === false ? ' · fotos ocultas' : ''}</span>
         </div>
       </div>
       <details class="club-details">
@@ -78,16 +78,17 @@ function renderDashboardPage(data, saved) {
             </div>
             <div class="form-field full">
               <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
-                <input type="checkbox" name="visible" value="1" ${club.visible !== false ? 'checked' : ''} style="width:auto;">
-                Visible en la web (destildá para ocultar toda esta etapa)
+                <input type="checkbox" name="showNote" value="1" ${club.showNote !== false ? 'checked' : ''} style="width:auto;">
+                Mostrar la nota/descripción de esta etapa en la web
               </label>
             </div>
             <div class="form-field full">
               <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
-                <input type="checkbox" name="showNote" value="1" ${club.showNote !== false ? 'checked' : ''} style="width:auto;">
-                Mostrar la nota/descripción de esta etapa en la web (destildá para ocultar solo el texto)
+                <input type="checkbox" name="showPhotos" value="1" ${club.showPhotos !== false ? 'checked' : ''} style="width:auto;">
+                Mostrar las fotos de esta etapa en la web
               </label>
             </div>
+            <p class="form-field full section-hint" style="margin:0;">El club (escudo, nombre, período y rol) siempre aparece en la trayectoria — estos dos interruptores solo ocultan el texto o las fotos.</p>
           </div>
           <button class="admin-btn inline-save-btn" type="submit" style="margin-top:10px;">Guardar cambios</button>
         </form>
@@ -296,6 +297,7 @@ function renderDashboardPage(data, saved) {
   var btn=document.getElementById('floating-save-btn');
   var label=document.getElementById('floating-save-label');
   var active=forms[0];
+  var pinned=null;
   function setActive(f){
     if(!f||f===active)return;
     active=f;
@@ -303,9 +305,23 @@ function renderDashboardPage(data, saved) {
   }
   setActive(forms[0]);
   forms.forEach(function(f){
-    f.addEventListener('focusin',function(){setActive(f);});
+    f.addEventListener('focusin',function(){
+      setActive(f);
+      if(!f.closest('.club-details'))pinned=null;
+    });
+  });
+  // Abrir un acordeón de club es la señal más confiable de "esto es lo que
+  // estoy editando" — mientras esté abierto, el guardado flotante no debe
+  // saltar a otro formulario solo porque el scroll lo acerca al centro.
+  document.querySelectorAll('.club-details').forEach(function(det){
+    det.addEventListener('toggle',function(){
+      var f=det.querySelector('.savable-form');
+      if(det.open&&f){pinned=f;setActive(f);}
+      else if(pinned&&det.contains(pinned)){pinned=null;}
+    });
   });
   function updateByScroll(){
+    if(pinned)return;
     var vh=window.innerHeight,best=null,bestDist=Infinity;
     forms.forEach(function(f){
       var r=f.getBoundingClientRect();

@@ -48,8 +48,33 @@
       "note": "Donde empezó todo. Del fútbol base al torneo de Senegal que le abrió las puertas de Europa.",
       "photos": [
         {
-          "id": "19f2d517cd27622",
-          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/mockup/guinea.jpg",
+          "id": "19f2d5a788b1da0",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/gfi_1.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5a7cca97f1",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/gfi_2.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5a7fcb5187",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/gfi_3.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5a8362a1c4",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/gfi_4.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5a86653813",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/gfi_5.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5a94b07c69",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/gfi_6.jpg",
           "featured": false
         }
       ]
@@ -64,8 +89,13 @@
       "note": "Su primer contrato en España. Ni año y medio parado por el papeleo frenó su ambición.",
       "photos": [
         {
-          "id": "19f2d517cd38dd3",
-          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/mockup/ourense.jpg",
+          "id": "19f2d5a9797b93",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/ourense_1.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5a9ab925df",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/ourense_2.jpg",
           "featured": false
         }
       ]
@@ -90,8 +120,78 @@
       "note": "Sus primeros partidos como absoluto: 10 encuentros que ya olían a fútbol profesional.",
       "photos": [
         {
-          "id": "19f2d517cd44e93",
-          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/mockup/estradense.jpg",
+          "id": "19f2d5aa48d2efe",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/estradense_1.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5aa98d7400",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/estradense_2.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5aadd71fba",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/estradense_3.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5ab134a260",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/estradense_4.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5ab5434248",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/estradense_5.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5ab9108c53",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/estradense_6.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5abcb7a272",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/estradense_7.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5ac08c62d",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/estradense_8.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5ac4789d52",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/estradense_9.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5ac8648b41",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/estradense_10.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5acc032d6",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/estradense_11.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5ad02d66e0",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/estradense_12.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5ad4144226",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/estradense_13.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5ad7f894f8",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/estradense_14.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5adca64b25",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/estradense_15.jpg",
           "featured": false
         }
       ]
@@ -106,8 +206,48 @@
       "note": "Experiencia internacional en la Primera División checa.",
       "photos": [
         {
-          "id": "19f2d517cd56b98",
-          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/mockup/znojmo.jpg",
+          "id": "19f2d5ae13e8a67",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/znojmo_1.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5ae5c846ec",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/znojmo_2.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5ae9a210c0",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/znojmo_3.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5aed8eca9",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/znojmo_4.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5af1c38b71",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/znojmo_5.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5af5f251bc",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/znojmo_6.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5af8d3768a",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/znojmo_7.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5afcbe2fae",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/znojmo_8.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5b018e523e",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/znojmo_9.jpg",
           "featured": false
         }
       ]
@@ -122,8 +262,53 @@
       "note": "Su mejor curso hasta ahora: 27 partidos y goles celebrados con su gente.",
       "photos": [
         {
-          "id": "19f2d517cd66494",
-          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/mockup/viveiro.jpg",
+          "id": "19f2d5b048973e8",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/viveiro_1.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5b0862b2c9",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/viveiro_2.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5b0c5e23ff",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/viveiro_3.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5b0ff72e60",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/viveiro_4.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5b13952380",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/viveiro_5.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5b17177b11",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/viveiro_6.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5b1b497863",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/viveiro_7.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5b1e423d44",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/viveiro_8.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5b2243a46a",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/viveiro_9.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5b264d128e",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/viveiro_10.jpg",
           "featured": false
         }
       ]
@@ -207,7 +392,28 @@
       "role": "Cesión",
       "visible": false,
       "note": "Cesión de rodaje en la segunda vuelta, interrumpida por una lesión de hombro. Capítulo de carácter y regreso.",
-      "photos": []
+      "photos": [
+        {
+          "id": "19f2d5b2a596fa1",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/moralo_1.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5b2db464bb",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/moralo_2.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5b3132905e",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/moralo_3.jpg",
+          "featured": false
+        },
+        {
+          "id": "19f2d5b34a84b83",
+          "url": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/photos/moralo_4.jpg",
+          "featured": false
+        }
+      ]
     },
     {
       "id": "recreativo",

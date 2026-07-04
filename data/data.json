@@ -57,7 +57,7 @@
       "club": "Viveiro CF",
       "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_viveiro.png",
       "period": "2024",
-      "role": "Sénior"
+      "role": "Primer equipo"
     },
     {
       "id": "znojmo",
@@ -71,14 +71,14 @@
       "club": "CD Estradense",
       "crest": "https://cdn.jsdelivr.net/gh/ramospalavez/web-sylla@main/public/uploads/crests/crest_estradense.png",
       "period": "2024",
-      "role": "Sénior"
+      "role": "Primer equipo"
     },
     {
       "id": "praina",
       "club": "Praíña AFC",
       "crest": null,
       "period": "2023",
-      "role": "Sénior"
+      "role": "Primer equipo"
     },
     {
       "id": "ourense",

@@ -429,10 +429,10 @@
           "featured": false
         }
       ],
-      "showNote": false,
+      "showNote": true,
       "yearFrom": 2025,
       "yearTo": 2025,
-      "showPhotos": false
+      "showPhotos": true
     },
     {
       "id": "recreativo",

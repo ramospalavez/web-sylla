@@ -11,7 +11,7 @@ function yearOptions(selected, includePresente) {
   return html;
 }
 
-function renderDashboardPage(data, saved) {
+function renderDashboardPage(data, saved, previewCode) {
   const p = data.player;
   const s = data.seasonStats;
 
@@ -165,6 +165,7 @@ function renderDashboardPage(data, saved) {
         </label>
       </div>
       <button class="admin-btn" type="submit" style="margin-top:10px;">Guardar estado</button>
+      ${data.site && data.site.underConstruction ? `<a href="/admin/preview-${previewCode}" target="_blank" class="admin-btn" style="margin-top:10px;margin-left:8px;display:inline-block;text-decoration:none;">Previsualizar sitio real ↗</a>` : ''}
     </form>
   </div>
 

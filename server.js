@@ -32,6 +32,7 @@ const PORT = process.env.PORT || 3000;
 const ADMIN_USER = process.env.ADMIN_USER || 'admin';
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin';
 const SESSION_SECRET = process.env.SESSION_SECRET || 'dev-secret-cambiame';
+const PREVIEW_CODE = process.env.PREVIEW_CODE || 'x7k2m9qz';
 const SESSION_COOKIE = 'sid';
 const SESSION_MAX_AGE = 1000 * 60 * 60 * 8; // 8 horas
 const MAX_UPLOAD_BYTES = 200 * 1024 * 1024; // 200MB
@@ -209,7 +210,14 @@ async function handleRequest(req, res) {
       if (method === 'GET' && pathname === '/admin') {
         const data = await readData();
         const saved = parsed.query.saved || null;
-        return sendHtml(res, 200, renderDashboardPage(data, saved));
+        return sendHtml(res, 200, renderDashboardPage(data, saved, PREVIEW_CODE));
+      }
+
+      // Previsualización del sitio real aunque esté en modo construcción.
+      // Ruta con código secreto + requiere sesión admin (doble candado).
+      if (method === 'GET' && pathname === `/admin/preview-${PREVIEW_CODE}`) {
+        const data = await readData();
+        return sendHtml(res, 200, renderPublicPage(data));
       }
 
       if (method === 'POST' && pathname === '/admin/site') {
